@@ -1,25 +1,20 @@
-﻿namespace csv_geojson
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            string[] lines = File.ReadAllLines("gps_data.csv");
+﻿namespace csv_geojson {
+    internal static class Program {
+        private static void Main() {
+            var lines = File.ReadAllLines("gps_data.csv");
 
-            // Create the output JSON file
-            StreamWriter writer = new StreamWriter("gps_data.geojson");
+            var writer = new StreamWriter("gps_data.geojson");
 
             writer.WriteLine("{");
             writer.WriteLine("    \"type\": \"FeatureCollection\",");
             writer.WriteLine("    \"features\": [");
 
-            for (int i = 1; i < lines.Length; i++) // Skip header row
-            {
-                string[] columns = lines[i].Split(',');
+            for (var i = 1; i < lines.Length; i++) {
+                var columns = lines[i].Split(',');
 
-                double latitude = Convert.ToDouble(columns[0]);
-                double longitude = Convert.ToDouble(columns[1]);
-                long timestamp = Convert.ToInt64(columns[2]);
+                var latitude = Convert.ToDouble(columns[0]);
+                var longitude = Convert.ToDouble(columns[1]);
+                var timestamp = Convert.ToInt64(columns[2]);
 
                 writer.WriteLine("        {");
                 writer.WriteLine("            \"type\": \"Feature\",");
