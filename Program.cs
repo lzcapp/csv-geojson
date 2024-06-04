@@ -9,8 +9,7 @@
             writer.WriteLine("\t\"type\": \"FeatureCollection\",");
             writer.WriteLine("\t\"features\": [");
 
-            for (var i = 1; i < lines.Length; i++)
-            {
+            for (var i = 1; i < lines.Length; i++) {
                 var columns = lines[i].Split(',');
 
                 var latitude = Convert.ToDouble(columns[0]);
@@ -32,11 +31,7 @@
                 writer.WriteLine("\t\t\t\t\"timestamp\": " + timestamp);
                 writer.WriteLine("\t\t\t}");
 
-                if (i != lines.Length - 1) {
-                    writer.WriteLine("\t\t},");
-                } else {
-                    writer.WriteLine("\t\t}");
-                }
+                writer.WriteLine(i != lines.Length - 1 ? "\t\t}," : "\t\t}");
             }
 
             writer.WriteLine("\t]");
